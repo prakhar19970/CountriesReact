@@ -16,7 +16,7 @@
 .countries-header{
   background-color: hsl(0, 0%, 100%);
   display: flex;
-  box-shadow: 0px 3px hsl(0, 0%, 94%);
+  box-shadow: 0px 3px 5px hsl(0, 0%, 94%);
   height:4rem;
   justify-content: space-between;
   align-items: center;
@@ -44,16 +44,26 @@
 img{
   height: 100%;
   width:100%;
-  border-top-left-radius: 2%;
-  border-top-right-radius: 2%;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .country-block{
   /* border-radius: 2%; */
   background-color: hsl(0, 0%, 100%);
   width: 20%;
+  border-bottom-left-radius: 2%;
+  border-bottom-right-radius: 2%;
+  box-shadow: 2px 3px 5px 2px hsl(0, 0%, 94%);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .country-summary-div{
-  border-bottom-left-radius: 2%;
-  border-bottom-right-radius: 2%;
+  
+}
+
+.country-row{
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 5%;
 }

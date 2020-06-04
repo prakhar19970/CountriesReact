@@ -10,7 +10,9 @@ class Showcountries extends Component {
     }
 
     state={
-        countriesData: []
+        countriesData: [],
+
+
     }
 
  getallCountries =() => {
@@ -22,30 +24,53 @@ class Showcountries extends Component {
             return data.json();
         }
     }).then(res => {
-        console.log(res);
+        // console.log(res);
         // return res;
-        this.setState({ countriesData: res })
+        let finalData=[];
+        let temp=[];
+        for(let i=0;i<res.length;i++)
+        {
+                // console.log(res[i]);
+                if((i+1)%5 !== 0)
+                {
+                    temp.push(res[i]);
+                }
+                else
+                {
+                    finalData.push(temp);
+                    temp=[];
+                }  
+        }
+        console.log(finalData);
+         this.setState({ countriesData: finalData })
     });
 }
 render(){
-    return(<div className="countries-outer-area">
-        {
-         this.state.countriesData.map((data, index) => (
-            <div className="country-block">
-                <div className="country-flag-div"><img src={data.flag} alt="country flag"/></div>
-                <div>
+
+    return(
+            this.state.countriesData.map((data, index) =>
+             (
+                
+            <div className='d-flex country-row'>
+                { data.map((cardData,index)=> (
+                    <div id ={index} className="country-block">
+                    <div className="country-flag-div"><img src={cardData.flag} alt="country flag"/></div>
+                    <div>
                     <div className="country-name-title">
-                    <h6>{data.name}</h6>
+                    <h6>{cardData.name}</h6>
                     </div>
                     <div className="country-summary-div">
-                    <p>Population : {data.population}</p>
-                    <p>Region : {data.region}</p>
-                    <p>Capital : {data.capital}</p>
+                    <p>Population : {cardData.population}</p>
+                    <p>Region : {cardData.region}</p>
+                    <p>Capital : {cardData.capital}</p>
+                    </div>
                     </div>
                 </div>
+                ))
+                }
             </div>
-         ))}
-         </div>)
+         )))
+         
     }
 
 }

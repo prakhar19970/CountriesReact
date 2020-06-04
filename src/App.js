@@ -8,7 +8,7 @@ class CountriesApp extends Component {
   return (
     <div className="countries-wrapper">
       <CountriesHeader/>
-      <div className='d-flex'>
+      <div className="countries-outer-area">
         <ShowCountries/>
       </div>
     </div>
