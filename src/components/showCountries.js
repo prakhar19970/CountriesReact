@@ -55,14 +55,14 @@ render(){
                 { data.map((cardData,index)=> (
                     <div id ={index} className="country-block">
                     <div className="country-flag-div"><img src={cardData.flag} alt="country flag"/></div>
-                    <div>
+                    <div className="country-details-div">
                     <div className="country-name-title">
-                    <h6>{cardData.name}</h6>
+                    <h6><b>{cardData.name}</b></h6>
                     </div>
                     <div className="country-summary-div">
-                    <p>Population : {cardData.population}</p>
-                    <p>Region : {cardData.region}</p>
-                    <p>Capital : {cardData.capital}</p>
+                    <div><b>Population:</b> {cardData.population}</div>
+                    <div><b>Region:</b> {cardData.region}</div>
+                    <div><b>Capital:</b> {cardData.capital}</div>
                     </div>
                     </div>
                 </div>
