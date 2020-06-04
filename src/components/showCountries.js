@@ -28,16 +28,16 @@ class Showcountries extends Component {
     });
 }
 render(){
-    return(<div>
+    return(<div className="countries-outer-area">
         {
          this.state.countriesData.map((data, index) => (
-            <div>
-                <div><img src={data.flag} alt="country flag"/></div>
+            <div className="country-block">
+                <div className="country-flag-div"><img src={data.flag} alt="country flag"/></div>
                 <div>
-                    <div>
+                    <div className="country-name-title">
                     <h6>{data.name}</h6>
                     </div>
-                    <div>
+                    <div className="country-summary-div">
                     <p>Population : {data.population}</p>
                     <p>Region : {data.region}</p>
                     <p>Capital : {data.capital}</p>

@@ -30,3 +30,30 @@
   background-color: white;
   font-weight: 600;
 }
+
+.countries-outer-area{
+  padding:6%;
+  display:flex;
+  flex-wrap:wrap;
+}
+.country-flag-div{
+  height: 9rem;
+  width: 100%;
+ 
+}
+img{
+  height: 100%;
+  width:100%;
+  border-top-left-radius: 2%;
+  border-top-right-radius: 2%;
+}
+.country-block{
+  /* border-radius: 2%; */
+  background-color: hsl(0, 0%, 100%);
+  width: 20%;
+}
+
+.country-summary-div{
+  border-bottom-left-radius: 2%;
+  border-bottom-right-radius: 2%;
+}
