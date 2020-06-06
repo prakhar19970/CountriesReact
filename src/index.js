@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import CountriesApp from './App';
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 // import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   // <React.StrictMode>
-    <CountriesApp />,
+  <BrowserRouter>
+      <Route component={CountriesApp } />
+    </BrowserRouter>,
   // </React.StrictMode>,
   document.getElementById('root')
 );

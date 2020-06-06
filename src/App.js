@@ -9,16 +9,14 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 class CountriesApp extends Component {
   render(){
   return (
-    <BrowserRouter>
+    
     <div className="countries-wrapper">
-      <CountriesHeader/>
-      
+      <CountriesHeader/> 
       <Switch>
-      <Route path="/country/:name" component={Singlecountry} exact />
+      <Route path="/country/:name" component={Singlecountry} />
       <Route path="/" component={ShowCountries} exact />
       </Switch>
     </div>
-    </BrowserRouter>
   );
   }
 }

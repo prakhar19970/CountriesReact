@@ -4,7 +4,6 @@ import SearchBar from "./searchBar";
 import { render } from '@testing-library/react';
 import Displaycountries from './displayCountries';
 // import Searchedcountries from './searchedCountry';
-
 // import { Link } from 'react-router-dom'
 
 class Showcountries extends Component {
@@ -19,6 +18,7 @@ class Showcountries extends Component {
         searchInput:"",
         regionSelected:""
     }
+
     renderDiv=()=>{
         let renderThis;
         const countryName = this.state.searchInput;
@@ -90,8 +90,6 @@ regionShard=(data)=>{
             return data.json();
         }
     }).then(res => {
-        // console.log(res);
-        // return res;
          this.setState({ countriesData: res,
             countriesStructureDataFrame:this.reStructureData(res)})
     });  
@@ -112,4 +110,4 @@ render(){
 
 }
 
-export default Showcountries;
+export default Showcountries; 

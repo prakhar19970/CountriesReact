@@ -12,8 +12,17 @@
   font-size: calc(10px + 2vmin); */
   /* color: white; */
 }
+
 .back-btn{
   box-shadow: 2px 5px 4px 2px hsl(0, 0%, 94%);
+  width: 10%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.curved-corners{
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .countries-header{
   background-color: hsl(0, 0%, 100%);
@@ -38,6 +47,12 @@
   display:flex;
   flex-wrap:wrap;
 }
+.country-deatils-wrapper{
+  padding:6% 6% 10% 6%;
+  display:flex;
+  flex-direction: column;
+  flex-wrap:wrap;
+}
 .country-flag-div{
   height: 9rem;
   width: 100%;
@@ -46,8 +61,7 @@
 img{
   height: 100%;
   width:100%;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  
 }
 .country-block{
   background-color: hsl(0, 0%, 100%);
@@ -57,7 +71,6 @@ img{
   box-shadow: 2px 3px 3px 2px hsl(0, 0%, 94%);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  cursor:pointer;
 }
 .new-country-block{
   background-color: hsl(0, 0%, 100%);
@@ -71,7 +84,9 @@ img{
 }
 
 .country-summary-div{
-  
+  padding-top: 6%;
+  justify-content: space-between;
+  height: 14rem;
 }
 
 .country-row{
@@ -85,6 +100,7 @@ img{
 }
 .country-details-div{
   padding: 6% 2% 15% 10%;
+  cursor:pointer;
 }
 
 
@@ -127,3 +143,49 @@ a:hover{
   color : hsl(200, 15%, 8%);
 }
 
+.country-details-outer{
+ margin-top: 2%;
+}
+.country-details-flag{
+  width: 46%;
+  height: 23rem;
+}
+.country-details-outer-block{
+  padding: 3% 2% 0% 10%;
+  width:54%;
+}
+.summary-left-inner-div{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 9rem;
+}
+.summary-right-inner-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 5rem;
+}
+.border-area{
+  /* flex-wrap: wrap;
+  flex-direction: column;
+  width: 52%; */
+  width: 27%;
+  margin-top: 2%;
+}
+.border-country-buttons{
+  flex-wrap: wrap;
+  width: 73%;
+}
+
+.border-btn{
+font-size: small;
+padding: 6px;
+border-radius: 7px;
+box-shadow: 2px 5px 4px 2px hsl(0, 0%, 94%);
+margin: 1%;
+}
+.border-country-wrapper{
+  display: flex;
+  /* align-items: center; */
+}

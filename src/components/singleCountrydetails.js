@@ -1,13 +1,44 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link,NavLink, Redirect, Switch } from "react-router-dom";
 
 class SingleCountry extends Component{
+    
     componentDidMount(){
-        this.getsingleCountry()
+        this.getsingleCountry() 
     }
-
+    
     state={
-        singleCountryData:''
+        singleCountryData:[],
+        currencies: [],
+        topLevelDomain:[],
+        borderCodes:[],
+        borderCountries:[],
+        languages:[],
+        countriesData:[]
+    }
+    borderCountryfilter =()=>{
+        let filterCode=[];
+            this.state.borderCodes.map((border,index)=>(
+                //console.log(border)
+            filterCode.push(this.state.countriesData.filter(country=>
+               {return country.alpha3Code === border})   
+            )
+            ))
+        this.setState({borderCountries:filterCode});
+        }
+
+    getallCountries =() => {
+        let getUrl = `https://restcountries.eu/rest/v2/all`;
+        return fetch(getUrl, {
+            method: 'GET'
+        }).then(data => {
+            if (data.ok) {
+                return data.json();
+            }
+        }).then(res => {
+             this.setState({ countriesData: res})
+             this.borderCountryfilter();
+        });
     }
 
     getsingleCountry =() => {
@@ -23,44 +54,73 @@ class SingleCountry extends Component{
         }).then(res => {
             console.log(res);
             // return res;
-             this.setState({ singleCountryData: res})
-        });  
-    }
+            console.log(res);
+            const country=res[0];
+             this.setState({ singleCountryData: country,
+                currencies:country.currencies,
+            topLevelDomain:country.topLevelDomain,
+            languages:country.languages,
+            borderCodes:country.borders})
+             this.getallCountries() 
+    })
+}
     render(){
-        return(<div className="countries-outer-area">
-        <button className="btn white-btn back-btn"><Link to='/'style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}>Back</Link></button>
-        <div className="d-flex">
-            {console.log(this.state.singleCountryData)}
-            <div>
+        
+        return(
+            <div className="country-deatils-wrapper">
+            <Link to='/'style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}><button className="btn white-btn back-btn">
+            <i class="fa fa-long-arrow-left fa-sm"> </i>
+            Back</button></Link>
+            {
+                   <div className="country-details-outer">
+                    <div className="d-flex">  
+            <div className="country-details-flag">
                 <img src={this.state.singleCountryData.flag} alt="country flag"/>
             </div>
-            <div className="country-details-div">
+            <div className="country-details-outer-block">
             <div className="country-name-title">
                 <h3><b>{this.state.singleCountryData.name}</b></h3>
-                <div className="d-flex country-summary-div">
-                    <div>
-                <div><b>Native Name:</b> {this.state.singleCountryData.nativeName}</div>
-                <div><b>Population:</b> {this.state.singleCountryData.population}</div>
-                <div><b>Region:</b> {this.state.singleCountryData.region}</div>
-                <div><b>Sub Region:</b> {this.state.singleCountryData.subregion}</div>
-                <div><b>Capital:</b> {this.state.singleCountryData.capital}</div>
-                </div>
-                <div>
-                    {/* <div><b>Top Level Domain:</b> {this.state.singleCountryData.topLevelDomain[0]}</div> */}
-                    {/* <div><b>Currencies:</b> {this.state.singleCountryData.currencies[0].name}</div> */}
-                    {/* <div><b>Languages:</b> {
-                        this.state.singleCountryData.languages.map((lang,index)=>(
-                        <span>{lang.name}</span>
-                        )
-                        )
-                    }</div> */}
-                </div>
-                </div>
-                </div>
             </div>
+            <div className="d-flex country-summary-div">
+                <div className="summary-left-inner-div">
+                    <div><b>Native Name:</b> {this.state.singleCountryData.nativeName}</div>
+                    <div><b>Population:</b> {this.state.singleCountryData.population}</div>
+                    <div><b>Region:</b> {this.state.singleCountryData.region}</div>
+                    <div><b>Sub Region:</b> {this.state.singleCountryData.subregion}</div>
+                    <div><b>Capital:</b> {this.state.singleCountryData.capital}</div>
+                </div>
+                <div className="summary-right-inner-div">
+                    <div><b>Top Level Domain:</b> {this.state.topLevelDomain.map((domain,index)=>(
+                    <span>{domain}</span>))}
+                    </div>
+                    <div><b>Currencies:</b> { this.state.currencies.map((currency,index)=>(
+                    <span>{currency.name}</span>))}</div>
+                    <div><b>Languages:</b> {
+                        this.state.languages.map((lang,index)=>(
+                            <span>{ index+1 === this.state.languages.length? lang.name : lang.name+', ' }</span>))}
+                    </div>
+                </div>
+                </div>
+                <div className={this.state.borderCountries.length ? 'border-country-wrapper':'d-none'}>
+                        <div className="d-flex border-area"><b>Border Countries:</b></div>
+                        <div className="d-flex border-country-buttons">{this.state.borderCountries.map((borderCountry,index)=>(
+                            borderCountry.map((cardData,index)=> (
+                               <div className="btn white-btn border-btn" >
+                             <Link to={`/country/${cardData.name}`} style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}
+    onClick={()=> this.getsingleCountry()}> {cardData.name}</Link></div>
+                            ))
+                        ))}</div>
+                        </div>
+            </div>
+               </div>
+        </div>}
         </div>
-        </div>)
-    }
+        )
+}
 }
 
 export default SingleCountry;
+
+// <div={`/country/${cardData.name}`} style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}></div>
+
+ 
