@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import SearchBar from "./searchBar";
 import { render } from '@testing-library/react';
-import Allcountries from './showAllCountries';
-import Searchedcountries from './searchedCountry';
+import Displaycountries from './displayCountries';
+// import Searchedcountries from './searchedCountry';
 
 // import { Link } from 'react-router-dom'
 
@@ -16,22 +16,30 @@ class Showcountries extends Component {
     state={
         countriesData: [],
         countriesStructureDataFrame:[],
-        searchInput:""
+        searchInput:"",
+        regionSelected:""
     }
     renderDiv=()=>{
         let renderThis;
-        const checkValue = this.state.searchInput;
-       if(checkValue.length){
-            // console.log(checkValue.length,"inside if")
-        const filtercountry = this.state.countriesData.filter(country=>
+        const countryName = this.state.searchInput;
+        const regionName = this.state.regionSelected;
+       if(countryName.length){
+       const filtercountry = this.state.countriesData.filter(country=>
             {
-                return country.name.toLowerCase().includes(checkValue.toLowerCase())}) 
+                return country.name.toLowerCase().includes(countryName.toLowerCase())}) 
+           renderThis= <Displaycountries displayResults={this.reStructureData(filtercountry)}/>
+       }
+       else if(regionName.length){
+        const filterRegion= this.state.countriesData.filter(country=>
+            {
+
+                return country.region.toLowerCase() === regionName.toLowerCase()}) 
             //  console.log("---------->",this.reStructureData(filtercountry)); 
 
-           renderThis= <Searchedcountries searchResults={this.reStructureData(filtercountry)}/>
+           renderThis= <Displaycountries displayResults={this.reStructureData(filterRegion)}/>
        }
        else{
-           renderThis= <Allcountries countriesStructureDataFrame={this.state.countriesStructureDataFrame} />
+           renderThis= <Displaycountries displayResults={this.state.countriesStructureDataFrame} />
           }
     return renderThis;
     }
@@ -39,6 +47,11 @@ class Showcountries extends Component {
     // console.log(event.target.value);
         this.setState({searchInput:event.target.value})
     }
+
+    filterRegion=(event)=>{
+         console.log(event.target.value);
+            this.setState({regionSelected:event.target.value})
+        }
 
     reStructureData=(allcountriesData)=>{
         // console.log('allcountry----->',allcountriesData);
@@ -61,6 +74,13 @@ class Showcountries extends Component {
         return finalData;
     }
 
+regionShard=(data)=>{
+    let temp=[];
+    data.map((e,x)=>(
+        temp.push(e.region)))
+     let newdata=[...new Set(temp)]
+     return newdata;
+}
     getallCountries =() => {
     let getUrl = `https://restcountries.eu/rest/v2/all`;
     return fetch(getUrl, {
@@ -81,7 +101,7 @@ render(){
 
     return(
         <div className="countries-outer-area">
-           <SearchBar searchFunction={this.searchCountry} filterRegion={this.state.countriesData} />
+           <SearchBar searchFunction={this.searchCountry} filterRegionData={this.regionShard(this.state.countriesData)} filterFunction={this.filterRegion} />
             <div className="country-blocks-wrapper">
                 {this.renderDiv()}
             </div>
