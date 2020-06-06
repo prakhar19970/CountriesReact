@@ -69,11 +69,11 @@ class SingleCountry extends Component{
         return(
             <div className="country-deatils-wrapper">
             <Link to='/'style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}><button className="btn white-btn back-btn">
-            <i class="fa fa-long-arrow-left fa-sm"> </i>
+            <i className="fa fa-long-arrow-left fa-sm"> </i>
             Back</button></Link>
             {
                    <div className="country-details-outer">
-                    <div className="d-flex">  
+                    <div id={this.state.singleCountryData.callingCodes} className="country-details-container">  
             <div className="country-details-flag">
                 <img src={this.state.singleCountryData.flag} alt="country flag"/>
             </div>
@@ -81,7 +81,7 @@ class SingleCountry extends Component{
             <div className="country-name-title">
                 <h3><b>{this.state.singleCountryData.name}</b></h3>
             </div>
-            <div className="d-flex country-summary-div">
+            <div className="country-summary-div">
                 <div className="summary-left-inner-div">
                     <div><b>Native Name:</b> {this.state.singleCountryData.nativeName}</div>
                     <div><b>Population:</b> {this.state.singleCountryData.population}</div>
@@ -91,10 +91,10 @@ class SingleCountry extends Component{
                 </div>
                 <div className="summary-right-inner-div">
                     <div><b>Top Level Domain:</b> {this.state.topLevelDomain.map((domain,index)=>(
-                    <span>{domain}</span>))}
+                    <span id={index}>{domain}</span>))}
                     </div>
                     <div><b>Currencies:</b> { this.state.currencies.map((currency,index)=>(
-                    <span>{currency.name}</span>))}</div>
+                    <span id={index}>{currency.name}</span>))}</div>
                     <div><b>Languages:</b> {
                         this.state.languages.map((lang,index)=>(
                             <span>{ index+1 === this.state.languages.length? lang.name : lang.name+', ' }</span>))}
@@ -105,9 +105,9 @@ class SingleCountry extends Component{
                         <div className="d-flex border-area"><b>Border Countries:</b></div>
                         <div className="d-flex border-country-buttons">{this.state.borderCountries.map((borderCountry,index)=>(
                             borderCountry.map((cardData,index)=> (
-                               <div className="btn white-btn border-btn" >
-                             <Link to={`/country/${cardData.name}`} style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}
-    onClick={()=> this.getsingleCountry()}> {cardData.name}</Link></div>
+                                <Link to={`/country/${cardData.name}`} style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}
+                                className="btn white-btn border-btn">  <div  onClick={()=> this.getsingleCountry()}>
+                             {cardData.name}</div></Link>
                             ))
                         ))}</div>
                         </div>
