@@ -41,8 +41,10 @@ modeStatus=()=>{
     <div className="countries-wrapper">
       <CountriesHeader mode={this.modeStatus} darkMode={this.state.darkMode} /> 
       <Switch>
-      <Route path="/country/:name" render={(props) => <Singlecountry {...props} darkMode={this.state.darkMode} />}/>
+
       <Route path="/" render={(props) => <ShowCountries {...props} darkMode={this.state.darkMode} />} exact />
+      <Route path="/country/:name" render={(props) => <Singlecountry {...props} darkMode={this.state.darkMode} />}/>
+     
       </Switch>
     </div>
   );

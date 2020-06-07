@@ -7,7 +7,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 ReactDOM.render(
   <BrowserRouter>
-      <Route render={(props) => <CountriesApp {...props} appContainer={document.getElementById('root')} />} />
+      <Route to="/" render={(props) => <CountriesApp {...props} appContainer={document.getElementById('root')} />} />
     </BrowserRouter>,
   document.getElementById('root')
 );
