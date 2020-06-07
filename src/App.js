@@ -11,11 +11,11 @@ class CountriesApp extends Component {
   componentDidMount(){
     if(sessionStorage.getItem("mode") === 'dark'){
       this.setState({darkMode:true});
-      this.props.appContainer.style.backgroundColor= "hsl(207, 26%, 17%)";
+      // this.props.appContainer.style.backgroundColor= "hsl(207, 26%, 17%)";
     }
     else{
       this.setState({darkMode:false})
-      this.props.appContainer.style.backgroundColor= "hsl(0, 0%, 98%)";
+      // this.props.appContainer.style.backgroundColor= "hsl(0, 0%, 98%)";
     }
   }
     state={
@@ -37,7 +37,7 @@ modeStatus=()=>{
   render(){
     
   return (
-    
+    <BrowserRouter>
     <div className="countries-wrapper">
       <CountriesHeader mode={this.modeStatus} darkMode={this.state.darkMode} /> 
       <Switch>
@@ -47,6 +47,7 @@ modeStatus=()=>{
      
       </Switch>
     </div>
+    </BrowserRouter>
   );
   }
 }
