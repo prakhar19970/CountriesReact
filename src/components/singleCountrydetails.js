@@ -67,8 +67,8 @@ class SingleCountry extends Component{
     render(){
         
         return(
-            <div className="country-deatils-wrapper">
-            <Link to='/'style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}><button className="btn white-btn back-btn">
+            <div className={this.props.darkMode?"country-deatils-wrapper dark-background":"country-deatils-wrapper"}>
+            <Link to='/'style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}><button className={this.props.darkMode? "btn white-btn back-btn dark-mode-element dark-shadow" :"btn white-btn back-btn"}>
             <i className="fa fa-long-arrow-left fa-sm"> </i>
             Back</button></Link>
             {
@@ -105,8 +105,8 @@ class SingleCountry extends Component{
                         <div className="d-flex border-area"><b>Border Countries:</b></div>
                         <div className="d-flex border-country-buttons">{this.state.borderCountries.map((borderCountry,index)=>(
                             borderCountry.map((cardData,index)=> (
-                                <Link to={`/country/${cardData.name}`} style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}
-                                className="btn white-btn border-btn">  <div  onClick={()=> this.getsingleCountry()}>
+                                <Link to={`/country/${cardData.name}`} style={{ textDecoration: 'none', color:(this.props.darkMode ?'hsl(0, 0%, 100%)':'hsl(200, 15%, 8%)')}}
+                                className={this.props.darkMode? "btn white-btn border-btn dark-mode-element dark-shadow":"btn white-btn border-btn"}>  <div  onClick={()=> this.getsingleCountry()}>
                              {cardData.name}</div></Link>
                             ))
                         ))}</div>

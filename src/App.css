@@ -1,18 +1,7 @@
-/* .App {
-  text-align: center;
-} */
 
-.countries-home-body {
-  /* background-color: hsl(0, 0%, 98%); */
-  /* min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin); */
-  /* color: white; */
+#root{
+  height: 39rem;
 }
-
 .back-btn{
   box-shadow: 2px 5px 4px 2px hsl(0, 0%, 94%);
   width: 10%;
@@ -33,21 +22,34 @@
   align-items: center;
   padding: 1% 6%;
 }
+.dark-mode-element{
+  background-color: hsl(209, 23%, 22%) !important;
+  color: white;
+}
+.dark-shadow{
+  box-shadow: 2px 2px 3px 2px hsl(200, 23%, 10%) !important; 
+}
 .header-title{
   font-size:22px;
   font-weight: 800;
 }
 .white-btn{
-  background-color: white;
+  background-color:hsl(0, 0%, 100%);
   font-weight: 600;
 }
 
+.dark-background{
+  background-color: hsl(207, 26%, 17%) !important;
+color:hsl(0, 0%, 100%);
+}
 .countries-outer-area{
+  background-color: hsl(0, 0%, 98%);
   padding:6%;
   display:flex;
   flex-wrap:wrap;
 }
 .country-deatils-wrapper{
+  background-color: hsl(0, 0%, 98%);
   padding:6% 6% 10% 6%;
   display:flex;
   flex-direction: column;
@@ -119,6 +121,7 @@ img{
   opacity: 1; /* Firefox */
 }
 .search-wrapper{
+  display: flex;
   width:100%;
   justify-content:space-between;
 }
@@ -184,7 +187,7 @@ height: 9rem;
 .border-btn{
 font-size: small;
 padding: 6px;
-border-radius: 7px;
+border-radius: 4px;
 box-shadow: 2px 5px 4px 2px hsl(0, 0%, 94%);
 margin: 1%;
 }

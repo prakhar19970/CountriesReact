@@ -6,11 +6,9 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 // import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  // <React.StrictMode>
   <BrowserRouter>
-      <Route component={CountriesApp } />
+      <Route render={(props) => <CountriesApp {...props} appContainer={document.getElementById('root')} />} />
     </BrowserRouter>,
-  // </React.StrictMode>,
   document.getElementById('root')
 );
 

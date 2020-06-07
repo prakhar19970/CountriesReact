@@ -7,7 +7,7 @@ import Displaycountries from './displayCountries';
 // import { Link } from 'react-router-dom'
 
 class Showcountries extends Component {
-   
+
     componentDidMount() {
         this.getallCountries()
     }
@@ -16,7 +16,7 @@ class Showcountries extends Component {
         countriesData: [],
         countriesStructureDataFrame:[],
         searchInput:"",
-        regionSelected:""
+        regionSelected:"",
     }
 
     renderDiv=()=>{
@@ -27,7 +27,7 @@ class Showcountries extends Component {
        const filtercountry = this.state.countriesData.filter(country=>
             {
                 return country.name.toLowerCase().includes(countryName.toLowerCase())}) 
-           renderThis= <Displaycountries displayResults={this.reStructureData(filtercountry)}/>
+           renderThis= <Displaycountries displayResults={this.reStructureData(filtercountry)} darkMode={this.props.darkMode}/>
        }
        else if(regionName.length){
         const filterRegion= this.state.countriesData.filter(country=>
@@ -36,10 +36,10 @@ class Showcountries extends Component {
                 return country.region.toLowerCase() === regionName.toLowerCase()}) 
             //  console.log("---------->",this.reStructureData(filtercountry)); 
 
-           renderThis= <Displaycountries displayResults={this.reStructureData(filterRegion)}/>
+           renderThis= <Displaycountries displayResults={this.reStructureData(filterRegion)} darkMode={this.props.darkMode}/>
        }
        else{
-           renderThis= <Displaycountries displayResults={this.state.countriesStructureDataFrame} />
+           renderThis= <Displaycountries displayResults={this.state.countriesStructureDataFrame} darkMode={this.props.darkMode} />
           }
     return renderThis;
     }
@@ -98,8 +98,8 @@ regionShard=(data)=>{
 render(){
 
     return(
-        <div className="countries-outer-area">
-           <SearchBar searchFunction={this.searchCountry} filterRegionData={this.regionShard(this.state.countriesData)} filterFunction={this.filterRegion} />
+        <div className={this.props.darkMode ? "dark-background countries-outer-area":"countries-outer-area"}>
+           <SearchBar searchFunction={this.searchCountry} filterRegionData={this.regionShard(this.state.countriesData)} filterFunction={this.filterRegion} darkMode={this.props.darkMode}/>
             <div className="country-blocks-wrapper">
                 {this.renderDiv()}
             </div>
