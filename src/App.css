@@ -219,15 +219,19 @@ margin: 1%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-left: 2%;
+    padding-right: 2%;
 }
 .country-block,.new-country-block{
-  width: auto;
+  width: 60%;
   height: 20rem;
   margin-right: 5%;
   margin-bottom:5%;
 }
 .country-blocks-wrapper{
   padding-top: 8%;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 .country-details-container{
   flex-direction: column;
@@ -271,14 +275,7 @@ height: 19rem;
 height: 20rem;
 margin-right: 5%;
 margin-bottom: 5%;
-width: 30%;
+width: 37%;
 }
 }
-/* @media only screen and (max-width: 1440px) and (min-width: 900px){
-  .country-block,.new-country-block{
-  height: 20rem;
-  margin-right: 5%;
-  margin-bottom: 5%;
-  width: 20%;
-  }
-  } */
+
