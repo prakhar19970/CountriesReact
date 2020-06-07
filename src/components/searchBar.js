@@ -6,7 +6,7 @@ class SearchBar extends Component {
     return(
         <div className="d-flex search-wrapper" >
           <div className={this.props.darkMode? "dark-mode-element input-area  dark-shadow ":"input-area"}>
-          <i class='fa fa-search fa-sm'></i>
+          <i className='fa fa-search fa-sm'></i>
         <input type="text" name="search" className={this.props.darkMode? "dark-mode-element countries-search-bar":"countries-search-bar"} onChange={this.props.searchFunction} placeholder='Search for a country...'/>
         </div>        
         <div className="dropdown">
