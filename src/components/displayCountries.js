@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NumberFormat from 'react-number-format';
 import { Link } from "react-router-dom";
 class Displaycountries extends Component {
 
@@ -16,7 +17,7 @@ class Displaycountries extends Component {
                 <h6><b>{cardData.name}</b></h6>
                 </div>
                 <div>
-                <div><b>Population:</b> {cardData.population}</div>
+                <NumberFormat value={cardData.population} displayType={'text'} thousandSeparator={true} renderText={value => <div><b>Population:</b> {value}</div>} />
                 <div><b>Region:</b> {cardData.region}</div>
                 <div><b>Capital:</b> {cardData.capital}</div>
                 </div>

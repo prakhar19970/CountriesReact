@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NumberFormat from 'react-number-format';
 import { Link,NavLink, Redirect, Switch } from "react-router-dom";
 
 class SingleCountry extends Component{
@@ -84,7 +85,7 @@ class SingleCountry extends Component{
             <div className="country-summary-div">
                 <div className="summary-left-inner-div">
                     <div><b>Native Name:</b> {this.state.singleCountryData.nativeName}</div>
-                    <div><b>Population:</b> {this.state.singleCountryData.population}</div>
+                    <NumberFormat value={this.state.singleCountryData.population} displayType={'text'} thousandSeparator={true} renderText={value => <div><b>Population:</b> {value}</div>} />
                     <div><b>Region:</b> {this.state.singleCountryData.region}</div>
                     <div><b>Sub Region:</b> {this.state.singleCountryData.subregion}</div>
                     <div><b>Capital:</b> {this.state.singleCountryData.capital}</div>
