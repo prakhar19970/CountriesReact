@@ -9,23 +9,27 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 class CountriesApp extends Component {
  
   componentDidMount(){
-    this.modeStatus()
+    if(sessionStorage.getItem("mode") === 'dark'){
+      this.setState({darkMode:true});
+      this.props.appContainer.style.backgroundColor= "hsl(207, 26%, 17%)";
+    }
+    else{
+      this.setState({darkMode:false})
+      this.props.appContainer.style.backgroundColor= "hsl(0, 0%, 98%)";
+    }
   }
-
     state={
       darkMode:''
     }
 modeStatus=()=>{
 //   console.log('yes it here ');
     if(sessionStorage.getItem("mode") === 'dark'){
-        sessionStorage.setItem("mode", 'light');
-        this.setState({darkMode:false});  
-        this.props.appContainer.style.backgroundColor= "hsl(0, 0%, 98%)";    
+         sessionStorage.setItem("mode", 'light');
+         this.setState({darkMode:false});       
     }
     else{
         sessionStorage.setItem("mode", 'dark');
-        this.setState({darkMode:true});
-        this.props.appContainer.style.backgroundColor= "hsl(207, 26%, 17%)";
+        this.setState({darkMode:true});   
     }
 
 }

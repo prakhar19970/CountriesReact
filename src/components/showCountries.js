@@ -74,12 +74,12 @@ class Showcountries extends Component {
         return finalData;
     }
 
-regionShard=(data)=>{
-    let temp=[];
-    data.map((e,x)=>(
-        temp.push(e.region)))
-     let newdata=[...new Set(temp)]
-     return newdata;
+regionShard=(regions)=>{
+    let regionContainer=[];
+    regions.map((regionData,index)=>(
+        regionContainer.push(regionData.region)))
+     let regionDatafiltered=[...new Set(regionContainer)]
+     return regionDatafiltered;
 }
     getallCountries =() => {
     let getUrl = `https://restcountries.eu/rest/v2/all`;
