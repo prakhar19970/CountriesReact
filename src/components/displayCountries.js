@@ -11,7 +11,7 @@ class Displaycountries extends Component {
                 { data.map((cardData,index)=> (
                 <div id={cardData.callingCodes} className={(data.length < 4 ? (this.props.darkMode? 'dark-mode-element  dark-shadow  new-country-block':'new-country-block') :(this.props.darkMode? 'dark-mode-element  dark-shadow country-block':"country-block"))}>
                 <div className="country-flag-div"><img className="curved-corners" src={cardData.flag} alt="country flag"/></div>
-                <Link to={`/country/${cardData.name}`} style={{ textDecoration: 'none', color:(this.props.darkMode ?'hsl(0, 0%, 100%)':'hsl(200, 15%, 8%)')}}>
+                <Link to={`/${cardData.name}`} style={{ textDecoration: 'none', color:(this.props.darkMode ?'hsl(0, 0%, 100%)':'hsl(200, 15%, 8%)')}}>
                 <div className="country-details-div">
                 <div className="country-name-title">
                 <h6><b>{cardData.name}</b></h6>

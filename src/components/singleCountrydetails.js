@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NumberFormat from 'react-number-format';
-import { Link,NavLink, Redirect, Switch } from "react-router-dom";
+import { Link,Switch } from "react-router-dom";
 
 class SingleCountry extends Component{
     
@@ -17,6 +17,7 @@ class SingleCountry extends Component{
         languages:[],
         countriesData:[]
     }
+
     borderCountryfilter =()=>{
         let filterCode=[];
             this.state.borderCodes.map((border,index)=>(
@@ -54,8 +55,6 @@ class SingleCountry extends Component{
             }
         }).then(res => {
             console.log(res);
-            // return res;
-            console.log(res);
             const country=res[0];
              this.setState({ singleCountryData: country,
                 currencies:country.currencies,
@@ -63,8 +62,17 @@ class SingleCountry extends Component{
             languages:country.languages,
             borderCodes:country.borders})
              this.getallCountries() 
-    })
-}
+        })
+    }
+
+    redirectToBorder = (country) => {
+        const { history } = this.props;
+        if(history) 
+        {
+            history.push(`/${country}`);
+        }
+    }
+
     render(){
         
         return(
@@ -73,8 +81,8 @@ class SingleCountry extends Component{
             <i className="fa fa-long-arrow-left fa-sm"> </i>
             Back</button></Link>
             {
-                   <div className="country-details-outer">
-                    <div id={this.state.singleCountryData.callingCodes} className="country-details-container">  
+                <div className="country-details-outer">
+                <div id={this.state.singleCountryData.callingCodes} className="country-details-container">  
             <div className="country-details-flag">
                 <img src={this.state.singleCountryData.flag} alt="country flag"/>
             </div>
@@ -106,9 +114,9 @@ class SingleCountry extends Component{
                         <div className="d-flex border-area"><b>Border Countries:</b></div>
                         <div className="d-flex border-country-buttons">{this.state.borderCountries.map((borderCountry,index)=>(
                             borderCountry.map((cardData,index)=> (
-                                <Link to={`/country/${cardData.name}`} style={{ textDecoration: 'none', color:(this.props.darkMode ?'hsl(0, 0%, 100%)':'hsl(200, 15%, 8%)')}}
-                                className={this.props.darkMode? "btn white-btn border-btn dark-mode-element dark-shadow":"btn white-btn border-btn"}>  <div  onClick={()=> this.getsingleCountry()}>
-                             {cardData.name}</div></Link>
+                                <Link to={`/${cardData.name}`} style={{ textDecoration: 'none', color:(this.props.darkMode ?'hsl(0, 0%, 100%)':'hsl(200, 15%, 8%)')}}
+                                className={this.props.darkMode? "btn white-btn border-btn dark-mode-element dark-shadow":"btn white-btn border-btn"}>
+                                <div>{cardData.name}</div></Link>
                             ))
                         ))}</div>
                         </div>
@@ -122,6 +130,3 @@ class SingleCountry extends Component{
 
 export default SingleCountry;
 
-// <div={`/country/${cardData.name}`} style={{ textDecoration: 'none', color:'hsl(200, 15%, 8%)'}}></div>
-
- 
