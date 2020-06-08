@@ -67,7 +67,7 @@ img{
 }
 .country-block{
   background-color: hsl(0, 0%, 100%);
-  width: 20%;
+  width: 19%;
   border-bottom-left-radius: 2%;
   border-bottom-right-radius: 2%;
   box-shadow: 2px 3px 3px 2px hsl(0, 0%, 94%);
@@ -76,7 +76,7 @@ img{
 }
 .new-country-block{
   background-color: hsl(0, 0%, 100%);
-  width: 20%;
+  width: 19%;
   border-bottom-left-radius: 2%;
   border-bottom-right-radius: 2%;
   box-shadow: 2px 3px 3px 2px hsl(0, 0%, 94%);

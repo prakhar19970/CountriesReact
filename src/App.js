@@ -10,11 +10,11 @@ class CountriesApp extends Component {
     componentDidMount(){
       if(sessionStorage.getItem("mode") === 'dark'){
         this.setState({darkMode:true});
-        //this.props.appContainer.style.backgroundColor= "hsl(207, 26%, 17%)";
+        document.body.style.backgroundColor= "hsl(207, 26%, 17%)";
       }
       else{
         this.setState({darkMode:false})
-        // this.props.appContainer.style.backgroundColor= "hsl(0, 0%, 98%)";
+        document.body.style.backgroundColor= "hsl(0, 0%, 98%)";
       }
     }
       state={
