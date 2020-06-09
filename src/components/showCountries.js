@@ -76,10 +76,13 @@ class Showcountries extends Component {
 
 regionShard=(regions)=>{
     let regionContainer=[];
-    regions.map((regionData,index)=>(
-        regionContainer.push(regionData.region)))
-     let regionDatafiltered=[...new Set(regionContainer)]
-     return regionDatafiltered;
+    regions.map((regionData,index)=>{
+        if(regionData.region !== '' && !(regionContainer.includes(regionData.region))){
+        regionContainer.push(regionData.region)}
+        return regionContainer;
+    })
+     console.log(regionContainer);
+     return regionContainer;
 }
     getallCountries =() => {
     let getUrl = `https://restcountries.eu/rest/v2/all`;
