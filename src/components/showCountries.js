@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import SearchBar from "./searchBar";
 import { render } from '@testing-library/react';
 import Displaycountries from './displayCountries';
-// import Searchedcountries from './searchedCountry';
-// import { Link } from 'react-router-dom'
-
 class Showcountries extends Component {
 
     componentDidMount() {
@@ -20,46 +17,49 @@ class Showcountries extends Component {
     }
 
     renderDiv=()=>{
-        let renderThis;
+        let renderThisComponent;
         const countryName = this.state.searchInput;
         const regionName = this.state.regionSelected;
-       if(countryName.length){
+       if(countryName.length && regionName.length){
+
        const filtercountry = this.state.countriesData.filter(country=>
             {
-                return country.name.toLowerCase().includes(countryName.toLowerCase())}) 
-           renderThis= <Displaycountries displayResults={this.reStructureData(filtercountry)} darkMode={this.props.darkMode}/>
+                 return country.name.toLowerCase().includes(countryName.toLowerCase()) && country.region.toLowerCase() === regionName.toLowerCase()}) 
+           renderThisComponent= <Displaycountries displayResults={this.reStructureData(filtercountry)} darkMode={this.props.darkMode}/>
+       }
+       else if(countryName.length){
+        const filtercountry = this.state.countriesData.filter(country=>
+            {
+                return country.name.toLowerCase().includes(countryName.toLowerCase());
+            })
+            renderThisComponent= <Displaycountries displayResults={this.reStructureData(filtercountry)} darkMode={this.props.darkMode}/>
        }
        else if(regionName.length){
         const filterRegion= this.state.countriesData.filter(country=>
             {
 
                 return country.region.toLowerCase() === regionName.toLowerCase()}) 
-            //  console.log("---------->",this.reStructureData(filtercountry)); 
-
-           renderThis= <Displaycountries displayResults={this.reStructureData(filterRegion)} darkMode={this.props.darkMode}/>
+            renderThisComponent= <Displaycountries displayResults={this.reStructureData(filterRegion)} darkMode={this.props.darkMode}/>
        }
        else{
-           renderThis= <Displaycountries displayResults={this.state.countriesStructureDataFrame} darkMode={this.props.darkMode} />
+        renderThisComponent= <Displaycountries displayResults={this.state.countriesStructureDataFrame} darkMode={this.props.darkMode} />
           }
-    return renderThis;
+    return renderThisComponent;
     }
+    
     searchCountry=(event)=>{
-    // console.log(event.target.value);
         this.setState({searchInput:event.target.value})
     }
 
     filterRegion=(event)=>{
-         console.log(event.target.value);
             this.setState({regionSelected:event.target.value})
         }
 
     reStructureData=(allcountriesData)=>{
-        // console.log('allcountry----->',allcountriesData);
         let finalData=[];
         let countryRow=[];
         for(let country=0;country<allcountriesData.length;country++)
         {
-            //console.log(countryRow);
             if(countryRow.length === 4)
             {
                 finalData.push(countryRow);
@@ -70,33 +70,32 @@ class Showcountries extends Component {
         if(countryRow.length){
             finalData.push(countryRow);
         }
-        // console.log("---finaldata--->",finalData);
         return finalData;
     }
 
-regionShard=(regions)=>{
-    let regionContainer=[];
-    regions.map((regionData,index)=>{
-        if(regionData.region !== '' && !(regionContainer.includes(regionData.region))){
-        regionContainer.push(regionData.region)}
+    regionShard=(regions)=>{
+        let regionContainer=[];
+        regions.map((regionData,index)=>{
+            if(regionData.region !== '' && !(regionContainer.includes(regionData.region))){
+            regionContainer.push(regionData.region)}
+            return regionContainer;
+        })
         return regionContainer;
-    })
-     console.log(regionContainer);
-     return regionContainer;
-}
+    }
+
     getallCountries =() => {
-    let getUrl = `https://restcountries.eu/rest/v2/all`;
-    return fetch(getUrl, {
-        method: 'GET'
-    }).then(data => {
-        if (data.ok) {
-            return data.json();
-        }
-    }).then(res => {
-         this.setState({ countriesData: res,
-            countriesStructureDataFrame:this.reStructureData(res)})
-    });  
-}
+        let getUrl = `https://restcountries.eu/rest/v2/all`;
+        return fetch(getUrl, {
+            method: 'GET'
+        }).then(data => {
+            if (data.ok) {
+                return data.json();
+            }
+        }).then(res => {
+            this.setState({ countriesData: res,
+                countriesStructureDataFrame:this.reStructureData(res)})
+        });  
+    }
 
 
 render(){

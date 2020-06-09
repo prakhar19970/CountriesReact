@@ -40,14 +40,12 @@ class CountriesApp extends Component {
       <CountriesHeader mode={this.modeStatus} darkMode={this.state.darkMode} /> 
       </div>
       <Switch>
-      <Route exact path="/:name" render={(props) => <Singlecountry {...props} darkMode={this.state.darkMode}  key={window.location.pathname}/>}/>
+      <Route exact path="/countries/:name" render={(props) => <Singlecountry {...props} darkMode={this.state.darkMode}  key={window.location.pathname}/>}/>
       <Route path="/" render={(props) => <ShowCountries {...props} darkMode={this.state.darkMode} />} exact />
       </Switch>
     </BrowserRouter>
   );
   }
 }
-
-
 
 export default CountriesApp;
