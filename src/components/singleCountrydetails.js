@@ -5,7 +5,6 @@ import {ShowCountries} from './showCountries';
 class SingleCountry extends Component{
     
     componentDidMount(){
-        this.props.getallCountries()
         this.getsingleCountry() 
     }
     
@@ -60,7 +59,7 @@ class SingleCountry extends Component{
             topLevelDomain:country.topLevelDomain,
             languages:country.languages,
             borderCodes:country.borders})
-             this.props.getallCountries() 
+             this.getallCountries() 
         })
     }
 
