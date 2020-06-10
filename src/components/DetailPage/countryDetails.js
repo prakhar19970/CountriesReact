@@ -78,8 +78,8 @@ class Country extends Component {
                                         <div><b>Native Name:</b> {this.state.singleCountryData.nativeName}</div>
                                         <NumberFormat value={this.state.singleCountryData.population} displayType={'text'} thousandSeparator={true} renderText={value => <div><b>Population:</b> {value}</div>} />
                                         <div><b>Region:</b> {this.state.singleCountryData.region}</div>
-                                        <div><b>Sub Region:</b> {this.state.singleCountryData.subregion}</div>
-                                        <div><b>Capital:</b> {this.state.singleCountryData.capital}</div>
+                                        <div><b>Sub Region:</b> {this.state.singleCountryData.subregion || 'none'}</div>
+                                        <div><b>Capital:</b> {this.state.singleCountryData.capital || 'none'}</div>
                                     </div>
                                     <div className="summary-right-inner-div">
                                         <div><b>Top Level Domain:</b> {this.state.topLevelDomain.map((domain, index) => (
