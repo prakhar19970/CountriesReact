@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NumberFormat from 'react-number-format';
 import { Link } from "react-router-dom";
-class Displaycountries extends Component {
+class Countrycard extends Component {
 
     render(){
     return(
@@ -10,7 +10,7 @@ class Displaycountries extends Component {
                 <div className={(data.length < 4 ? 'new-country-row' :'country-row' )}>     
 
                 { data.map((cardData,index)=> (
-                <Link to={`/countries/${cardData.name}`} style={{ textDecoration: 'none', color:(this.props.darkMode ?'hsl(0, 0%, 100%)':'hsl(200, 15%, 8%)')}} className={(data.length < 4 ? (this.props.darkMode? 'dark-mode-element  dark-shadow  new-country-block':'new-country-block') :(this.props.darkMode? 'dark-mode-element  dark-shadow country-block':"country-block"))}>
+                <Link to={`/countries/${cardData.alpha3Code}`} style={{ textDecoration: 'none', color:(this.props.darkMode ?'hsl(0, 0%, 100%)':'hsl(200, 15%, 8%)')}} className={(data.length < 4 ? (this.props.darkMode? 'dark-mode-element  dark-shadow  new-country-block':'new-country-block') :(this.props.darkMode? 'dark-mode-element  dark-shadow country-block':"country-block"))}>
                 <div id={cardData.callingCodes} >
                      
                 <div className="country-flag-div"><img className="curved-corners" src={cardData.flag} alt="country flag"/></div>
@@ -24,13 +24,10 @@ class Displaycountries extends Component {
                 <div><b>Region:</b> {cardData.region}</div>
                 <div><b>Capital:</b> {cardData.capital}</div>
                 </div>
-                </div> 
-                
+                </div>  
             </div>
-            </Link>
-   ))}
-</div>
-    )))}
+        </Link>))}
+    </div>)))}
 }
 
-export default Displaycountries;
+export default Countrycard;

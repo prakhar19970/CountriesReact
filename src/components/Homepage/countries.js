@@ -1,9 +1,8 @@
 
 import React, { Component } from 'react';
 import SearchBar from "./searchBar";
-import { render } from '@testing-library/react';
-import Displaycountries from './displayCountries';
-class Showcountries extends Component {
+import Countrycard from './countryCard';
+class Countries extends Component {
 
     componentDidMount() {
         this.getallCountries()
@@ -25,28 +24,28 @@ class Showcountries extends Component {
        const filtercountry = this.state.countriesData.filter(country=>
             {
                  return country.name.toLowerCase().includes(countryName.toLowerCase()) && country.region.toLowerCase() === regionName.toLowerCase()}) 
-           renderThisComponent= <Displaycountries displayResults={this.reStructureData(filtercountry)} darkMode={this.props.darkMode}/>
+           renderThisComponent= <Countrycard displayResults={this.reStructureData(filtercountry)} darkMode={this.props.darkMode}/>
        }
        else if(countryName.length){
         const filtercountry = this.state.countriesData.filter(country=>
             {
                 return country.name.toLowerCase().includes(countryName.toLowerCase());
             })
-            renderThisComponent= <Displaycountries displayResults={this.reStructureData(filtercountry)} darkMode={this.props.darkMode}/>
+            renderThisComponent= <Countrycard displayResults={this.reStructureData(filtercountry)} darkMode={this.props.darkMode}/>
        }
        else if(regionName.length){
         const filterRegion= this.state.countriesData.filter(country=>
             {
 
                 return country.region.toLowerCase() === regionName.toLowerCase()}) 
-            renderThisComponent= <Displaycountries displayResults={this.reStructureData(filterRegion)} darkMode={this.props.darkMode}/>
+            renderThisComponent= <Countrycard displayResults={this.reStructureData(filterRegion)} darkMode={this.props.darkMode}/>
        }
        else{
-        renderThisComponent= <Displaycountries displayResults={this.state.countriesStructureDataFrame} darkMode={this.props.darkMode} />
+        renderThisComponent= <Countrycard displayResults={this.state.countriesStructureDataFrame} darkMode={this.props.darkMode} />
           }
     return renderThisComponent;
     }
-    
+
     searchCountry=(event)=>{
         this.setState({searchInput:event.target.value})
     }
@@ -84,7 +83,7 @@ class Showcountries extends Component {
     }
 
     getallCountries =() => {
-        let getUrl = `https://restcountries.eu/rest/v2/all`;
+        let getUrl = `https://restcountries.eu/rest/v2/all?fields=name;population;region;capital;flag;alpha3Code`;
         return fetch(getUrl, {
             method: 'GET'
         }).then(data => {
@@ -113,4 +112,4 @@ render(){
 
 }
 
-export default Showcountries; 
+export default Countries; 

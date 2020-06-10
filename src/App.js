@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CountriesHeader from './components/header'
-import ShowCountries from "./components/showCountries"
-import Singlecountry from "./components/singleCountrydetails"
+import CountriesHeader from './components/Header/countriesHeader'
+import Countries from "./components/Homepage/countries"
+import Country from "./components/DetailPage/countryDetails"
 import './App.css';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
@@ -40,8 +40,8 @@ class CountriesApp extends Component {
       <CountriesHeader mode={this.modeStatus} darkMode={this.state.darkMode} /> 
       </div>
       <Switch>
-      <Route exact path="/countries/:name" render={(props) => <Singlecountry {...props} darkMode={this.state.darkMode}  key={window.location.pathname}/>}/>
-      <Route path="/" render={(props) => <ShowCountries {...props} darkMode={this.state.darkMode} />} exact />
+      <Route exact path="/countries/:code" render={(props) => <Country {...props} darkMode={this.state.darkMode}  key={window.location.pathname}/>}/>
+      <Route path="/" render={(props) => <Countries {...props} darkMode={this.state.darkMode} />} exact />
       </Switch>
     </BrowserRouter>
   );
