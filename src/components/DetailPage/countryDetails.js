@@ -28,8 +28,9 @@ class Country extends Component {
             if (data.ok) {
                 return data.json();
             }
-        }).then(res => {
-            this.setState({ borderCountries: res })
+        }).then(responseData => {
+            if(responseData!==undefined){
+            this.setState({ borderCountries: responseData })}
         });
     }
 
