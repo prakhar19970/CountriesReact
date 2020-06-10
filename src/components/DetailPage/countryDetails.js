@@ -86,7 +86,7 @@ class Country extends Component {
                                             <span id={index}>{domain}</span>))}
                                         </div>
                                         <div><b>Currencies:</b> {this.state.currencies.map((currency, index) => (
-                                            <span id={index}>{currency.name}</span>))}</div>
+                                            <span id={index}>{index + 1 === this.state.currencies.length ? currency.name : currency.name + ', '}</span>))}</div>
                                         <div><b>Languages:</b> {
                                             this.state.languages.map((lang, index) => (
                                                 <span>{index + 1 === this.state.languages.length ? lang.name : lang.name + ', '}</span>))}
