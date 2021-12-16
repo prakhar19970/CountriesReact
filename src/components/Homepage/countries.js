@@ -83,7 +83,7 @@ class Countries extends Component {
     }
 
     getallCountries =() => {
-        let getUrl = `https://restcountries.com/v2/all?fields=name;population;region;capital;flag;alpha3Code`;
+        let getUrl = `https://restcountries.com/v2/all?fields=name,population,region,capital,flag,alpha3Code`;
         return fetch(getUrl, {
             method: 'GET'
         }).then(data => {
