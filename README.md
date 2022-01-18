@@ -1,3 +1,13 @@
+
+**Installation Instructions**
+```
+- Make sure you do a npm install
+- Node Version >=14.18.0 
+
+```
+
+**Problem Question**
+
 ![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)
 
 **To do this challenge, you need a good understanding of JavaScript.**
