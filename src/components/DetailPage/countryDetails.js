@@ -36,6 +36,7 @@ class Country extends Component {
 
     getsingleCountry = () => {
         const countryCode = this.props.match.params.code.toLowerCase();
+        console.log(countryCode);
         let getUrl = `https://restcountries.eu/rest/v2/alpha/${countryCode}`;
 
         return fetch(getUrl, {

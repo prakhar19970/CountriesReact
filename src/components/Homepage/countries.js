@@ -54,15 +54,15 @@ class Countries extends Component {
             this.setState({regionSelected:event.target.value})
         }
 
-    reStructureData=(allcountriesData)=>{
+    reStructureData = (allcountriesData) => {
+        console.log(allcountriesData);
         let finalData=[];
         let countryRow=[];
         for(let country=0;country<allcountriesData.length;country++)
         {
-            if(countryRow.length === 4)
-            {
+            if (countryRow.length === 4) {
                 finalData.push(countryRow);
-                countryRow=[];
+                countryRow = [];
             }
             countryRow.push(allcountriesData[country]);
         }
@@ -83,7 +83,7 @@ class Countries extends Component {
     }
 
     getallCountries =() => {
-        let getUrl = `https://restcountries.com/v2/all?fields=name;population;region;capital;flag;alpha3Code`;
+        let getUrl = `https://restcountries.com/v2/all?fields=name,population,region,capital,flag,alpha3Code`;
         return fetch(getUrl, {
             method: 'GET'
         }).then(data => {
