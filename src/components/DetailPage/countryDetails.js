@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NumberFormat from 'react-number-format';
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 class Country extends Component {
 
     componentDidMount() {
@@ -16,12 +16,12 @@ class Country extends Component {
     }
 
     getborderCountries = (borderCountries) => {
-        let url = 'https://restcountries.eu/rest/v2/alpha?codes='
+        let url = 'https://restcountries.com/v2/alpha?codes='
         borderCountries.map((code, index) => {
-            url = url + `${code.toLowerCase()};`;
+            url = url + `${code.toLowerCase()},`;
             return url;
         })
-        url = url + `&fields=name;alpha3Code`;
+        url = url + `&fields=name,alpha3Code`;
         return fetch(url, {
             method: 'GET'
         }).then(data => {
@@ -29,15 +29,15 @@ class Country extends Component {
                 return data.json();
             }
         }).then(responseData => {
-            if(responseData!==undefined){
-            this.setState({ borderCountries: responseData })}
+            if (responseData !== undefined) {
+                this.setState({ borderCountries: responseData })
+            }
         });
     }
 
     getsingleCountry = () => {
         const countryCode = this.props.match.params.code.toLowerCase();
-        console.log(countryCode);
-        let getUrl = `https://restcountries.eu/rest/v2/alpha/${countryCode}`;
+        let getUrl = `https://restcountries.com/v2/alpha/${countryCode}`;
 
         return fetch(getUrl, {
             method: 'GET'
@@ -63,7 +63,7 @@ class Country extends Component {
             <div className={this.props.darkMode ? "country-deatils-wrapper dark-background" : "country-deatils-wrapper"}>
                 <Link to='/' style={{ textDecoration: 'none', color: 'hsl(200, 15%, 8%)' }}><button className={this.props.darkMode ? "btn white-btn back-btn dark-mode-element dark-shadow" : "btn white-btn back-btn"}>
                     <i className="fa fa-long-arrow-left fa-sm"> </i>
-            Back</button></Link>
+                    Back</button></Link>
                 {
                     <div className="country-details-outer">
                         <div id={this.state.singleCountryData.callingCodes} className="country-details-container">
